@@ -25,7 +25,7 @@ app.post('/tours', (req, res) => {
     price,
   }
   tourDetails.push(newtour);
-  fs.writeFileSync(`${__dirname}/data/tours.json`,tourDetails);
+  fs.writeFileSync(`${__dirname}/data/tours.json`,JSON.stringify(tourDetails));
 
   res.status(200).json({"message": "Tour added successfully"})
 });
@@ -37,7 +37,7 @@ app.put('/tours/:id', (req, res) => {
   //write a code here for updating a tour
   const index=tourDetails.findIndex(({id})=>id==tourId);
   tourDetails[index]=updatedTour;
-  fs.writeFileSync(`${__dirname}/data/tours.json`,tourDetails);
+  fs.writeFileSync(`${__dirname}/data/tours.json`,JSON.stringify(tourDetails));
 
   res.status(200).json({"message": "Tour updated successfully"});
 });
@@ -47,7 +47,7 @@ app.delete('/tours/:id', (req, res) => {
   //Write a code here for deleting a tour from data/tours.json
   const index=tourDetails.findIndex(({id})=>id==tourId);
   tourDetails.splice(index,1);
-  fs.writeFileSync(`${__dirname}/data/tours.json`,tourDetails);
+  fs.writeFileSync(`${__dirname}/data/tours.json`,JSON.stringify(tourDetails));
 
   res.status(200).json({"message": "Tour deleted successfully"});
 
