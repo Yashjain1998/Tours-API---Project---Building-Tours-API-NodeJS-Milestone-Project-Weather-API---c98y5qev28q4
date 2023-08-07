@@ -37,7 +37,7 @@ app.put('/tours/:id', (req, res) => {
   //write a code here for updating a tour
   const index=tourDetails.findIndex(({id})=>id==tourId);
   if(index===-1){
-    res.status(404).json({msg:"id not found"});
+    res.status(404).json({message:"Not Found"});
   }
   tourDetails[index]=updatedTour;
   fs.writeFileSync(`${__dirname}/data/tours.json`,JSON.stringify(tourDetails));
@@ -50,7 +50,7 @@ app.delete('/tours/:id', (req, res) => {
   //Write a code here for deleting a tour from data/tours.json
   const index=tourDetails.findIndex(({id})=>id==tourId);
   if(index===-1){
-    res.status(404).json({msg:"id not found"});
+    res.status(404).json({message:"Not Found"});
   }
   tourDetails.splice(index,1);
   fs.writeFileSync(`${__dirname}/data/tours.json`,JSON.stringify(tourDetails));
