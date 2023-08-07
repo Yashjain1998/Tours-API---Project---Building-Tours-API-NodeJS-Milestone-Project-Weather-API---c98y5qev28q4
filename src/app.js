@@ -9,7 +9,7 @@ const tourDetails = JSON.parse(fs.readFileSync(`${__dirname}/data/tours.json`));
 
 app.get('/tours', (req, res) => {
   //write a code here to get all the tours from tours.json
-  res.status(200).json(JSON.stringify(tourDetails));
+  res.status(200).json(tourDetails);
 });
 
 app.post('/tours', (req, res) => {
@@ -35,7 +35,7 @@ app.put('/tours/:id', (req, res) => {
   const updatedTour = req.body;
 
   //write a code here for updating a tour
-  const index=tourDetails.findindex(({id})=>id==tourId);
+  const index=tourDetails.findIndex(({id})=>id==tourId);
   tourDetails[index]=updatedTour;
   fs.writeFileSync(`${__dirname}/data/tours.json`,tourDetails);
 
@@ -45,7 +45,7 @@ app.put('/tours/:id', (req, res) => {
 app.delete('/tours/:id', (req, res) => {
   const tourId = parseInt(req.params.id);
   //Write a code here for deleting a tour from data/tours.json
-  const index=tourDetails.findindex(({id})=>id==tourId);
+  const index=tourDetails.findIndex(({id})=>id==tourId);
   tourDetails.splice(index,1);
   fs.writeFileSync(`${__dirname}/data/tours.json`,tourDetails);
 
